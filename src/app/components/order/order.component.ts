@@ -8,6 +8,7 @@ import {ProductsService} from '../../services/products-crud/products.service';
 import {OrdersService} from '../../services/orders-crud/orders.service';
 import {Product} from '../../models/product';
 import {Order} from '../../models/order';
+import {EditOrderComponent} from '../edit-order/edit-order.component';
 
 @Component({
   selector: 'app-order',
@@ -34,6 +35,9 @@ export class OrderComponent implements OnInit {
     this.productService.getProducts().subscribe((res: Product[]) => {
       this.products = res;
     })
+    this.OrderService.getOrders().subscribe((res: Order[]) => {
+      this.orders = res;
+    })
 
   }
 
@@ -47,11 +51,16 @@ export class OrderComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
-    this.OrderService.addOrder(form).then(form.reset);
+    this.OrderService.addOrder(form.value).then(form.reset);
   }
 
   editModal(order:Order) {
-
+    const modalRef = this.modal.open(EditOrderComponent, {
+      size: 'lg',
+      centered: true,
+      windowClass: 'dark-lg'
+    });
+    modalRef.componentInstance.id = order.id;
   }
 
   deleteOrder(order: Order) {

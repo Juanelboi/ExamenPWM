@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Order} from '../../models/product';
+import {Order} from '../../models/order';
 import {addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, setDoc} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 
