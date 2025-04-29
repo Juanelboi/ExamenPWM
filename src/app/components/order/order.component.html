@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+<div class="container-fluid muestra">
+  <form action="" #orderForm="ngForm" *ngIf="clients&&products" (ngSubmit)="onSubmit(orderForm)">
+    <label class="form-label">Seleccione el cliente</label>
+    <select class="form-control" name="clients" #name="ngModel" [ngModel]="order?.clientId" required>
+      <option *ngFor="let client of clients"> {{client.name}}</option>
+    </select>
+    <label class="form-label">Seleccione el producto</label>
+    <select class="form-control" name="clients" #name="ngModel" [ngModel]="order?.ProductId" required>
+      <option *ngFor="let product of products"> {{product.name}}</option>
+    </select>
+    <label class="form-label">Introduzca la cantidad a pedir</label>
+    <input class="form-control" type="number" name="quantity" #name="ngModel" [ngModel]="order?.quantity" required>
+    <button class="btn btn-success mt-2 w-100" type="submit" [disabled]="!orderForm.valid">Subir</button>
+    <button class="btn btn-dark mt-2 ms-2 " type="reset">Limpiar</button>
+  </form>
+</div>
+
+
+
+<table class="table table-bordered mt-5">
+  <thead>
+  <tr>
+    <th scope="col">Nº</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="orders">
+  <tr *ngFor="let order of orders; index as i">
+    <th scope="row"> {{i+1}} </th>
+    <td> {{order.clientId}} </td>
+    <td> {{order.ProductId}} </td>
+    <td> {{order.quantity}} </td>
+    <td><i class="bi bi-pencil-square" style="color: green" (click)="editModal(order)"></i></td>
+    <td><i class="bi bi-trash" style="color: red" (click)="deleteOrder(order)"></i></td>
+  </tr>
+  </tbody>
+
+</table>

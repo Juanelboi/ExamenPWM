@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+<div class="container-fluid muestra">
+  <form action="" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+    <label class="form-label">Introduzca nombre del Producto</label>
+    <input class="form-control" type="text" name="name" #name="ngModel" [ngModel]="product?.name" required>
+    <label class="form-label">Introduzca descripcion del producto</label>
+    <input class="form-control" type="text" name="description" #name="ngModel" [ngModel]="product?.description" required>
+    <button class="btn btn-success mt-2 " type="submit" [disabled]="!productForm.valid">Subir</button>
+    <button class="btn btn-dark mt-2 ms-2 " type="reset">Limpiar</button>
+  </form>
+</div>
+
+
+
+<table class="table table-bordered mt-5">
+  <thead>
+  <tr>
+    <th scope="col">Nº</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="products">
+  <tr *ngFor="let product of products; index as i">
+    <th scope="row"> {{i+1}} </th>
+    <td> {{product?.name}} </td>
+    <td> {{product?.description}} </td>
+    <td><i class="bi bi-pencil-square" style="color: green" (click)="editModal(product)"></i></td>
+    <td><i class="bi bi-trash" style="color: red" (click)="deleteClient(product)"></i></td>
+  </tr>
+  </tbody>
+
+</table>

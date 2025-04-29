@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+<div class="container-fluid muestra">
+  <form action="" #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+    <label class="form-label">Introduzca nombre del cliente</label>
+    <input class="form-control" type="text" name="name" #name="ngModel" [ngModel]="client?.name" required>
+    <label class="form-label">Introduzca email del cliente</label>
+    <input class="form-control" type="email" name="email" #name="ngModel" [ngModel]="client?.email" required>
+    <button class="btn btn-success mt-2 w-100" type="submit" [disabled]="!clientForm.valid">Subir</button>
+    <button class="btn btn-dark mt-2 ms-2 " type="reset">Limpiar</button>
+  </form>
+</div>
+
+
+
+<table class="table table-bordered mt-5">
+  <thead>
+  <tr>
+    <th scope="col">Nº</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="clients">
+    <tr *ngFor="let client of clients; index as i">
+    <th scope="row"> {{i+1}} </th>
+    <td> {{client?.name}} </td>
+    <td> {{client?.email}} </td>
+    <td><i class="bi bi-pencil-square" style="color: green" (click)="editModal(client)"></i></td>
+    <td><i class="bi bi-trash" style="color: red" (click)="deleteClient(client)"></i></td>
+  </tr>
+  </tbody>
+
+</table>

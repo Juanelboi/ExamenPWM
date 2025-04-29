@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+<div class="container-fluid muestra">
+  <form action="" #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+    <label class="form-label">Introduzca nuevo nombre del cliente</label>
+    <input class="form-control" type="text" name="name" #name="ngModel" [ngModel]="client?.name" required>
+    <label class="form-label">Introduzca nuevo email del cliente</label>
+    <input class="form-control" type="email" name="email" #name="ngModel" [ngModel]="client?.email" required>
+    <button class="btn btn-success mt-2 w-100" type="submit" [disabled]="!clientForm.valid">Subir</button>
+  </form>
+</div>
